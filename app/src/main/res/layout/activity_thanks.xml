@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#202020"
+    android:orientation="vertical">
+
+
+<ImageView
+    android:layout_width="@dimen/_150sdp"
+    android:layout_height="wrap_content"
+    android:scaleType="centerInside"
+    android:layout_gravity="center"
+    android:layout_marginTop="@dimen/_50sdp"
+    android:tint="@color/colorPrimary"
+    android:src="@drawable/verified"/>
+
+
+    <com.logzero.necommerce.ui.BoldTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_27sdp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:text="Thank you for your Order"
+        android:layout_margin="@dimen/_10sdp"
+        />
+
+    <com.logzero.necommerce.ui.RegularTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/_13sdp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:text="Adding something small to an order that’s heading out the door is a great way to say thank you. You’ve already paid for the shipping and the box, so this is one of the most cost-effective ways to give customers a little extra delight."
+        android:layout_margin="@dimen/_10sdp"
+        />
+
+    <com.logzero.necommerce.ui.RegularTextView
+        android:id="@+id/home"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@drawable/button_selector2"
+        android:text="Back to Home"
+        android:gravity="center"
+        android:textAllCaps="true"
+        android:layout_margin="@dimen/_10sdp"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_13sdp" />
+</LinearLayout>

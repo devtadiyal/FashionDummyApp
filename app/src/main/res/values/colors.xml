@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+        <color name="red">#f1464c</color>
+        <color name="colorAccent">#D81B60</color>
+        <color name="colorPrimaryDark">#F12761</color>
+        <color name="colorPrimary">#F12761</color>
+        <color name="seek_bar_background">#ababab</color>
+        <color name="seek_bar_progress">#F12761</color>
+        <color name="seek_bar_secondary_progress">#F12761</color>
+        <color name="colorPrimaryLight">#F12761</color>
+        <color name="colorPrimaryMedium">#F12761</color>
+        <color name="textColorPrimary">#C61887</color>
+        <color name="navigationBarColor">#000000</color>
+        <color name="gray">#808080</color>
+        <color name="dark_gray">#373737</color>
+        <color name="gray_variant">#ff565e6b</color>
+        <color name="dark_green">#006666</color>
+        <color name="green_variant">#2FBCA1</color>
+        <color name="green">#228B22</color>
+        <!--<color name="colorPrimaryDark">#000000</color>
+        <color name="colorPrimary">#2B2F3A</color>
+        <color name="colorPrimaryLight">#FEA621</color>-->
+        <color name="image_black_transparent">#90000000</color>
+        <color name="blue">#00bcfe</color>
+        <color name="white">#FFFFFF</color>
+        <color name="yellow">#ffd800</color>
+        <color name="white_overlay">#f7f5f5</color>
+        <color name="windowBackground">#2b2f3a</color>
+        <color name="trans_black">#191919</color>
+        <color name="black">#000000</color>
+        <color name="bold">#3b3b3b</color>
+        <color name="medium">#EBE1E1</color>
+        <color name="regular">#FFFFFF</color>
+        <color name="grey">#7f7f7f</color>
+        <color name="edit_text_tint">#c5c7d2</color>
+
+        <color name="grey_800">#424242</color>
+        <color name="grey_600">#757575</color>
+        <color name="grey_500">#9e9e9e</color>
+
+        <color name="pin_normal">#6B767E</color>
+        <color name="icon_color">#E0E0E0</color>
+
+        <color name="pdlg_color_white">#eeeeee</color>
+        <color name="pdlg_color_blue">#1976D2</color>
+        <color name="darkblue">#000080</color>
+
+        <color name="pdlg_color_black">#212121</color>
+        <color name="lightpink">#FFB6C1</color>
+
+        <color name="background_deletion">#FFE5E5E5</color>
+
+        <color name="feedback_color">#eae7e7</color>
+        <color name="darkgrey">#454546</color>
+        <color name="light_gray">#A7A7A7</color>
+        <color name="mapcolor">#4285F4</color>
+
+</resources>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fillViewport="true">
+
+    <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        tools:context=".guesttt.GuestTTActivity">
+
+
+        <RelativeLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@color/colorPrimary">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:scaleType="centerInside"
+                android:src="@drawable/back1x" />
+
+            <com.logzero.necommerce.ui.RegularTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="Notification"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15sdp" />
+
+            <ImageView
+                android:id="@+id/edit"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingRight="@dimen/_5sdp"
+                android:src="@drawable/white_option1x"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+
+        <ru.nikartm.support.ImageBadgeView
+            android:id="@+id/iv_addtocart"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_gravity="center"
+            app:ibv_badgeValue="0"
+            app:ibv_badgeTextSize="13sp"
+            app:ibv_fixedBadgeRadius="12dp"
+            android:layout_toLeftOf="@+id/iv_notification"
+            app:ibv_badgeTextColor="#ffffff"
+            app:ibv_badgeColor="@color/green"
+            app:ibv_badgeLimitValue="false"
+android:tint="@color/colorPrimary"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:src="@drawable/notification"
+            />
+        <com.logzero.necommerce.ui.RegularTextView
+            android:layout_width="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_below="@+id/iv_addtocart"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content"
+            android:text="No new notification"/>
+
+
+    </RelativeLayout>
+
+</ScrollView>

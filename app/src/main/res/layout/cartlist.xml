@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_5sdp"
+    app:cardCornerRadius="@dimen/_6sdp"
+    app:cardElevation="@dimen/_8sdp">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/productimage"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_70sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:scaleType="fitXY"
+                android:background="@drawable/imageround"
+                android:textColor="@android:color/white" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/opendetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:orientation="vertical">
+
+                    <com.logzero.necommerce.ui.RegularTextView
+                        android:id="@+id/productname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Catbird Black"
+                        android:textColor="@color/black" />
+
+                    <com.logzero.necommerce.ui.RegularTextView
+                        android:id="@+id/productsubtitle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-5dp"
+                        android:text="Ankle Length Bootie"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="-5dp"
+                        android:orientation="horizontal">
+
+                        <com.logzero.necommerce.ui.RegularTextView
+                            android:id="@+id/price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="$47.00"
+                            android:textColor="@color/blue" />
+
+
+                        <com.logzero.necommerce.ui.RegularTextView
+                            android:id="@+id/discountprice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/_5sdp"
+                            android:text="$47.00"
+                            android:textColor="@color/light_gray"
+                            android:textSize="@dimen/_9sdp" />
+
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:orientation="vertical">
+
+
+
+                    <com.logzero.necommerce.ui.RegularTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Delivery charge FREE"
+                        android:textSize="@dimen/_9sdp"
+                        android:textColor="@color/light_gray" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+
+
+                    <com.logzero.necommerce.ui.RegularTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Qty: 1     Size: 41"
+                        android:textSize="@dimen/_9sdp"
+                        android:textColor="@color/light_gray" />
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/icon_color"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_height="@dimen/_1sdp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="2"
+            android:orientation="horizontal">
+
+
+
+            <com.logzero.necommerce.ui.RegularTextView
+                android:id="@+id/remove"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:text="REMOVE"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="@color/white"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/black" />
+
+
+            <View
+                android:layout_width="@dimen/_1sdp"
+                android:background="@color/icon_color"
+                android:layout_height="@dimen/_35sdp"/>
+
+            <com.logzero.necommerce.ui.RegularTextView
+                android:id="@+id/edit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:text="EDIT"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/black" />
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:background="@color/icon_color"
+            android:layout_marginBottom="@dimen/_3sdp"
+            android:layout_marginLeft="@dimen/_5sdp"
+            android:layout_marginRight="@dimen/_5sdp"
+            android:layout_height="@dimen/_1sdp"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

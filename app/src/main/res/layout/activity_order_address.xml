@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fillViewport="true">
+
+    <LinearLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        tools:context=".guesttt.GuestTTActivity">
+
+
+        <RelativeLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@color/colorPrimary">
+
+            <ImageView
+                android:id="@+id/back"
+                android:layout_width="@dimen/_50sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:scaleType="centerInside"
+                android:src="@drawable/back1x" />
+
+            <com.logzero.necommerce.ui.RegularTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:text="Order Address"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_15sdp" />
+
+            <ImageView
+                android:id="@+id/edit"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingRight="@dimen/_5sdp"
+                android:src="@drawable/white_option1x"
+                android:visibility="gone" />
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/l"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/button_selector3"
+            android:orientation="vertical"
+            android:padding="@dimen/_15sdp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+               >
+
+                <com.logzero.necommerce.ui.PoppinsLightEdittext
+                    android:id="@+id/state"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:backgroundTint="@color/light_gray"
+                    android:focusable="false"
+                    android:hint="State"
+                    android:inputType="textPersonName"
+                    android:maxLength="50"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingRight="@dimen/_15sdp"
+                    android:singleLine="true"
+                    android:textColor="@color/grey_800"
+                    android:textColorHint="@color/grey_800"
+                    android:textSize="@dimen/_12sdp" />
+
+
+                <ImageView
+                    android:layout_width="@dimen/_12sdp"
+                    android:src="@drawable/right"
+                    android:layout_height="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_33sdp"
+                    android:layout_alignParentRight="true"
+                    />
+
+            </RelativeLayout>
+
+
+
+            <com.logzero.necommerce.ui.PoppinsLightEdittext
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:backgroundTint="@color/light_gray"
+                android:hint="City"
+                android:inputType="textEmailAddress"
+                android:maxLength="40"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingRight="@dimen/_15sdp"
+                android:singleLine="true"
+                android:textColor="@color/grey_800"
+                android:textColorHint="@color/grey_800"
+                android:textSize="@dimen/_12sdp" />
+
+            <com.logzero.necommerce.ui.PoppinsLightEdittext
+                android:id="@+id/number"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:backgroundTint="@color/light_gray"
+                android:hint="First Name"
+                android:inputType="number"
+                android:maxLength="20"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingRight="@dimen/_15sdp"
+                android:singleLine="true"
+                android:textColor="@color/grey_800"
+                android:textColorHint="@color/grey_800"
+                android:textSize="@dimen/_12sdp" />
+
+            <com.logzero.necommerce.ui.PoppinsLightEdittext
+                android:id="@+id/message"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="start"
+                android:hint="Last Name"
+                android:maxLength="250"
+                android:maxLines="6"
+                android:overScrollMode="always"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingRight="@dimen/_15sdp"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:scrollbarStyle="insideInset"
+                android:scrollbars="vertical"
+                android:textColor="@color/grey_800"
+                android:textColorHint="@color/grey_800"
+                android:textSize="@dimen/_12sdp" />
+
+
+
+            <com.logzero.necommerce.ui.PoppinsLightEdittext
+                android:id="@+id/phone"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="start"
+                android:hint="Phone"
+                android:maxLength="250"
+                android:maxLines="6"
+                android:inputType="number"
+                android:overScrollMode="always"
+                android:paddingLeft="@dimen/_15sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingRight="@dimen/_15sdp"
+                android:scrollbarAlwaysDrawVerticalTrack="true"
+                android:scrollbarStyle="insideInset"
+                android:scrollbars="vertical"
+                android:textColor="@color/grey_800"
+                android:textColorHint="@color/grey_800"
+                android:textSize="@dimen/_12sdp" />
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <com.logzero.necommerce.ui.PoppinsLightEdittext
+                    android:id="@+id/setting"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_45sdp"
+                    android:backgroundTint="@color/light_gray"
+                    android:focusable="false"
+                    android:hint="Other Settings"
+                    android:inputType="textPersonName"
+                    android:maxLength="50"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingRight="@dimen/_15sdp"
+                    android:singleLine="true"
+                    android:textColor="@color/grey_800"
+                    android:textColorHint="@color/grey_800"
+                    android:textSize="@dimen/_12sdp" />
+
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_alignParentRight="true"
+                    />
+
+            </RelativeLayout>
+
+            <com.logzero.necommerce.ui.RegularTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="We've been getting sick of using the same boring."
+                android:textAllCaps="true"
+                android:textColor="@color/dark_gray"
+                android:textSize="@dimen/_11sdp" />
+
+
+            <Button
+                android:id="@+id/submit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginTop="@dimen/_25sdp"
+                android:layout_marginBottom="@dimen/_14sdp"
+                android:background="@drawable/button_selector2"
+                android:text="SAVE ADDRESS"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_13sdp" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

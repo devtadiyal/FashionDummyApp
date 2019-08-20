@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_women"
+            android:icon="@drawable/womenwhite"
+            android:title="Women" />
+        <item
+            android:id="@+id/nav_men"
+            android:icon="@drawable/man"
+            android:title="Men" />
+        <item
+            android:id="@+id/nav_kids"
+            android:icon="@drawable/kid"
+            android:title="Kids" />
+       <!-- <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home"
+            android:title="Home &amp; Living" />-->
+
+        <item
+            android:id="@+id/nav_wishlist"
+            android:icon="@drawable/wishlist"
+            android:title="Wishlist" />
+
+        <item
+            android:id="@+id/nav_order"
+            android:icon="@drawable/sign"
+            android:title="Order Address" />
+        <!--<item
+            android:id="@+id/nav_account"
+            android:icon="@drawable/add"
+            android:title="Account" />
+
+
+    <item
+        android:id="@+id/nav_faqs"
+        android:icon="@drawable/feed1x"
+        android:title="FAQs" />-->
+        <item
+            android:id="@+id/nav_contactus"
+            android:icon="@drawable/contactus"
+            android:title="Contact Us" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/logout"
+            android:title="Log Out" />
+
+    </group>
+</menu>

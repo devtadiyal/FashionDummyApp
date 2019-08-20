@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".womenselection.WomenMainActivity">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:scaleType="centerInside"
+            android:src="@drawable/back1x" />
+
+        <AutoCompleteTextView
+            android:id="@+id/iv_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:layout_toLeftOf="@+id/iv_addtocart"
+            android:drawablePadding="@dimen/_25sdp"
+            android:dropDownWidth="wrap_content"
+            android:dropDownVerticalOffset="5dp"
+            android:ems="10"
+            android:textCursorDrawable="@null"
+            android:cursorVisible="true"
+            android:hint=""
+            android:imeOptions="actionSearch"
+            android:importantForAutofill="noExcludeDescendants"
+            android:inputType="textAutoComplete|textAutoCorrect"
+            android:paddingRight="@dimen/_25sdp"
+            android:popupBackground="@color/white"
+            android:textColor="#FFFFFF"
+            android:textColorHint="@color/white">
+
+            <requestFocus />
+        </AutoCompleteTextView>
+
+
+        <ImageView
+            android:id="@+id/search"
+            android:layout_toLeftOf="@+id/cart"
+            android:layout_width="@dimen/_19sdp"
+            android:layout_height="@dimen/_19sdp"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="@dimen/_20sdp"
+            android:src="@drawable/search"
+            />
+
+        <ru.nikartm.support.ImageBadgeView
+            android:id="@+id/cart"
+            android:layout_toLeftOf="@+id/notification"
+            android:layout_width="@dimen/_19sdp"
+            android:layout_height="@dimen/_19sdp"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:src="@drawable/addtocart"
+            app:ibv_badgeColor="@color/green"
+            app:ibv_badgeLimitValue="false"
+            app:ibv_badgeTextColor="#ffffff"
+            app:ibv_badgeTextSize="8sp"
+            app:ibv_badgeValue="2"
+            app:ibv_fixedBadgeRadius="6dp" />
+
+
+        <ImageView
+            android:id="@+id/notification"
+            android:layout_width="@dimen/_19sdp"
+            android:layout_height="@dimen/_19sdp"
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:src="@drawable/notification"
+            />
+    </RelativeLayout>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_180sdp"
+        android:layout_below="@+id/toolbar" />
+
+
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/indicator"
+        android:layout_width="@dimen/_180sdp"
+        android:layout_height="@dimen/_50sdp"
+        android:visibility="gone"
+        app:tabBackground="@drawable/indicator_selector"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/viewPager"
+        app:tabGravity="fill"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/colorPrimary"
+        app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
+        app:tabTextColor="@color/black" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewpager2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_40sdp"
+        android:layout_below="@+id/tabs"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:weightSum="2">
+
+
+        <Button
+            android:id="@+id/sort"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:background="@color/white"
+            android:text="SORT"
+            android:layout_weight="1"
+            android:textAllCaps="true"
+            android:textColor="@color/black" />
+
+        <View
+            android:layout_width="@dimen/_1sdp"
+            android:background="@color/icon_color"
+            android:layout_height="@dimen/_34sdp"/>
+
+
+        <Button
+            android:id="@+id/filter"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:background="@color/white"
+            android:text="FILTER"
+            android:layout_weight="1"
+            android:textAllCaps="true"
+            android:textColor="@color/black" />
+    </LinearLayout>
+</RelativeLayout>

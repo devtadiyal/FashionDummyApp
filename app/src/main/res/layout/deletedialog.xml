@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/_250sdp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/round_d"
+    android:orientation="vertical">
+
+    <com.logzero.necommerce.ui.RegularTextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_50sdp"
+        android:background="@color/colorPrimaryLight"
+        android:gravity="center"
+        android:paddingTop="@dimen/_15sdp"
+        android:paddingBottom="@dimen/_15sdp"
+        android:scaleType="fitCenter"
+        android:visibility="gone"
+        android:text=""
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/_15sdp" />
+
+    <com.logzero.necommerce.ui.RegularTextView
+        android:id="@+id/text_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="15dp"
+        android:gravity="center_horizontal"
+        android:text="Do you want to delete this?"
+        android:textColor="#ff000000"
+        android:textSize="@dimen/_14sdp"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center_horizontal"
+        android:padding="@dimen/_14sdp"
+        android:layout_below="@+id/text_dialog"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:id="@+id/btn_dialog_no"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/round_cornor"
+            android:layout_marginRight="@dimen/_6sdp"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="Cancel"
+            android:ems="6"
+            android:textSize="@dimen/_13sdp"
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_dialog_yes"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginLeft="@dimen/_6sdp"
+            android:background="@drawable/round_cornor"
+            android:gravity="center_vertical|center_horizontal"
+            android:text="Ok"
+            android:ems="6"
+            android:textSize="@dimen/_13sdp"
+            android:textColor="@color/white"  />
+    </LinearLayout>
+
+
+</RelativeLayout>
