@@ -1,8 +1,34 @@
 package com.logzero.necommerce.utility;
 
+import android.util.Log;
+
 import com.logzero.necommerce.R;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+
 public class Data {
+
+    public static final String BASE_SITE = "development-review.net/ecommerce";
+    public static final  String COSTUMER_KEY="ck_48a6faf3ff255051a18ee235da4bddbaf31231f1";
+    public static final String COSTUMER_SECRET ="cs_16eb8c1619ac5bf07bc365e02c990abbb95bbec8";
+    public static final  String METHORD="GET";//change API method eg POST,PUT, DELETE etc (ONLY FOR THIS EXAMPLE FOR LIB LIKE RETROFIT,OKHTTP, The Are Dynamic Way)
+    //Product list
+    public static final  String BASE_URL = "http://"+BASE_SITE+"/wp-json/wc/v3/products";
+    public static final  String MEN_URL = "http://"+BASE_SITE+"/wp-json/wc/v3/men";
+
+    public static String encodeUrl(String url) {
+        String encodedurl = "";
+        try {
+
+            encodedurl = URLEncoder.encode(url, "UTF-8");
+            Log.d("Encodeurl", encodedurl);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
+        return encodedurl;
+    }
 
     public static final int boots_image[] = {
             R.drawable.wtshirt1,

@@ -36,9 +36,12 @@ import com.logzero.necommerce.productdetail.ProductDetailsActivity;
 import com.logzero.necommerce.ui.MediumTextView;
 import com.logzero.necommerce.utility.BaseActivity;
 import com.logzero.necommerce.utility.CustomTypefaceSpan;
+import com.logzero.necommerce.utility.Data;
 import com.logzero.necommerce.wishlist.WishlistActivity;
 import com.logzero.necommerce.womenselection.WomenMainActivity;
 import com.logzero.necommerce.womenselection.fragment.DressFragment;
+import com.woocommerse.OAuth1.services.HMACSha1SignatureService;
+import com.woocommerse.OAuth1.services.TimestampServiceImpl;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.widget.Toolbar;
@@ -57,6 +60,17 @@ import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -141,7 +155,7 @@ public class MainActivity extends BaseActivity
                     @Override
                     public void onDrawerStateChanged(int newState) {
                         // Respond when the drawer motion state changes
-                        System.out.println("Mew Syaye "+newState);
+                        System.out.println("Mew Syaye " + newState);
                     }
                 }
         );
@@ -301,9 +315,7 @@ public class MainActivity extends BaseActivity
     @Override
     protected void onResume() {
         super.onResume();
-        Long tsLong = System.currentTimeMillis()/1000;
-        String ts = tsLong.toString();
-        Log.d("TIMESTAMP",ts);
+        productrequest();
     }
 
     @Override
@@ -409,5 +421,110 @@ public class MainActivity extends BaseActivity
             dialog.show();
     }
 
+    public void productrequest() {
 
+        final String nonce = new TimestampServiceImpl().getNonce();
+        final String timestamp = new TimestampServiceImpl().getTimestampInSeconds();
+
+        // GENERATED NONCE and TIME STAMP
+        Log.d("nonce", nonce);
+        Log.d("time", timestamp);
+
+        String firstEncodedString = Data.METHORD + "&"
+                + Data.encodeUrl(Data.BASE_URL);
+        Log.d("firstEncodedString", firstEncodedString);
+
+        String parameterString = "oauth_consumer_key=" + Data.COSTUMER_KEY +
+                "&oauth_nonce=" + nonce +
+                "&oauth_signature_method=HMAC-SHA1" +
+                "&"+"oauth_timestamp=" + timestamp +
+                "&oauth_version=1.0";
+        String secoundEncodedString = "&" + Data.encodeUrl(parameterString);
+
+        Log.d("secoundEncodedString", secoundEncodedString);
+
+
+        String baseString = firstEncodedString + secoundEncodedString;
+
+        //THE BASE STRING AND COSTUMER_SECRET KEY IS USED FOR GENERATING SIGNATURE
+        Log.d("baseString", baseString);
+
+        String signature = new HMACSha1SignatureService().getSignature(baseString, Data.COSTUMER_SECRET, "");
+        Log.d("SignatureBefore", signature);
+
+        //Signature is encoded before parsing (ONLY FOR THIS EXAMPLE NOT NECESSARY FOR LIB LIKE RETROFIT,OKHTTP)
+        signature = Data.encodeUrl(signature);
+
+        Log.d("SignatureAfter ENCODING", signature);
+
+
+        final String finalSignature = signature;//BECAUSE I PUT IN SIMPLE THREAD NOT NECESSARY
+
+        new Thread() {
+            @Override
+            public void run() {
+
+                //  THIS IS A VERY BASIC EXAMPLE OF PARSING USER CAN USE ANY LATEST METHORD RETROFIT,OKHTTP,VOLLEY ETC
+                String filterid = "filter[categories]=gedgets";
+                filterid = Data.encodeUrl(filterid);
+
+                String parseUrl = Data.BASE_URL + "?" + "&" +
+                        "oauth_signature_method=HMAC-SHA1" +
+                        "&oauth_consumer_key=" + Data.COSTUMER_KEY + "" +
+                        "&oauth_version=1.0" +
+                        "&oauth_timestamp=" + timestamp + "" +
+                        "&oauth_nonce=" + nonce + "" +
+                        "&oauth_signature=" + finalSignature;
+
+                getJSON(parseUrl);
+
+            }
+        }.start();
+    }
+
+    public String getJSON(String url) {
+        HttpURLConnection c = null;
+        try {
+            URL u = new URL(url);
+            c = (HttpURLConnection) u.openConnection();
+            c.setRequestMethod("GET");
+            c.setRequestProperty("Content-length", "0");
+            c.setUseCaches(false);
+            c.setAllowUserInteraction(false);
+            Log.d("urlioz", "" + c.getURL());
+//            c.setConnectTimeout(timeout);
+//            c.setReadTimeout(timeout);
+            c.connect();
+            int status = c.getResponseCode();
+
+            Log.d("staus", "" + status);
+            switch (status) {
+                case 200:
+                case 401:
+                    BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream()));
+                    StringBuilder sb = new StringBuilder();
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        sb.append(line + "\n");
+                    }
+                    br.close();
+                    Log.d("RESonse here ", sb.toString());
+                    return sb.toString();
+            }
+
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (c != null) {
+                try {
+                    c.disconnect();
+                } catch (Exception ex) {
+                    Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        return "failed";
+    }
 }
