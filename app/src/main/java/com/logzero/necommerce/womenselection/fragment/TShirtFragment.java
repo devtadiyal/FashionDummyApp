@@ -5,19 +5,31 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import com.logzero.necommerce.R;
+import com.logzero.necommerce.allproductmodel.AllProduct;
+import com.logzero.necommerce.allproductmodel.AllProductImp;
+import com.logzero.necommerce.allproductmodel.AllProductsPresenter;
 import com.logzero.necommerce.utility.Data;
 import com.logzero.necommerce.utility.ItemClickListener;
+import com.logzero.necommerce.womenselection.AllProductAdapter;
+import com.woocommerse.OAuth1.services.HMACSha1SignatureService;
+import com.woocommerse.OAuth1.services.TimestampServiceImpl;
+
 import java.util.ArrayList;
+import java.util.List;
 
 
-public class TShirtFragment extends Fragment {
+public class TShirtFragment extends Fragment implements AllProductsPresenter.View{
     RecyclerView recyclerView;
+    AllProductImp allProductImp;
+    List<AllProduct> allProducts;
     public TShirtFragment() {
         // Required empty public constructor
     }
@@ -34,6 +46,8 @@ public class TShirtFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_tshirt, container,
                 false);
         recyclerView = view.findViewById(R.id.rv);
+        allProductImp = new AllProductImp(this);
+        getallproductrequest();
         initViews();
 
 
@@ -58,10 +72,8 @@ public class TShirtFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager =
                 new GridLayoutManager(getContext(), 1);
         recyclerView.setLayoutManager(layoutManager);
-        ArrayList<ShoesModel> androidVersions = prepareData();
-        DataAdapter adapter = new DataAdapter(getContext(),
-                androidVersions,"TShirtFragment");
-        recyclerView.setAdapter(adapter);
+       // ArrayList<ShoesModel> androidVersions = prepareData();
+
 
     }
 
@@ -78,6 +90,34 @@ public class TShirtFragment extends Fragment {
         }
         return android_version;
     }
+
+    @Override
+    public void getAllProducts(List response) {
+        AllProductAdapter adapter = new AllProductAdapter(getContext(),
+                response,"TShirtFragment");
+        recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void errorProducts(String error) {
+
+    }
+
+    @Override
+    public void showError(String response) {
+
+    }
+
+    @Override
+    public void showLoadingLayout() {
+
+    }
+
+    @Override
+    public void hideLoadingLayout() {
+
+    }
+
     public static class RecyclerTouchListener implements
             RecyclerView.OnItemTouchListener {
 
@@ -119,5 +159,77 @@ public class TShirtFragment extends Fragment {
         @Override
         public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
         }
+    }
+    public void getallproductrequest() {
+
+        final String nonce = new TimestampServiceImpl().getNonce();
+        final String timestamp = new TimestampServiceImpl().getTimestampInSeconds();
+
+        // GENERATED NONCE and TIME STAMP
+        Log.d("nonce", nonce);
+        Log.d("time", timestamp);
+
+        String firstEncodedString = Data.METHORD + "&"
+                + Data.encodeUrl(Data.BASE_URL);
+        Log.d("firstEncodedString", firstEncodedString);
+
+        String parameterString = "oauth_consumer_key=" + Data.COSTUMER_KEY +
+                "&oauth_nonce=" + nonce +
+                "&oauth_signature_method=HMAC-SHA1" +
+                "&" + "oauth_timestamp=" + timestamp +
+                "&oauth_version=1.0";
+        String secoundEncodedString = "&" + Data.encodeUrl(parameterString);
+
+        Log.d("secoundEncodedString", secoundEncodedString);
+
+
+        String baseString = firstEncodedString + secoundEncodedString;
+
+        //THE BASE STRING AND COSTUMER_SECRET KEY IS USED FOR GENERATING SIGNATURE
+        Log.d("baseString", baseString);
+
+        String signature = new HMACSha1SignatureService().getSignature(baseString, Data.COSTUMER_SECRET, "");
+        Log.d("SignatureBefore", signature);
+
+        //Signature is encoded before parsing (ONLY FOR THIS EXAMPLE NOT NECESSARY FOR LIB LIKE RETROFIT,OKHTTP)
+        signature = Data.encodeUrl(signature);
+
+        Log.d("SignatureAfter ENCODING", signature);
+
+        final String finalSignature = signature;//BECAUSE I PUT IN SIMPLE THREAD NOT NECESSARY
+
+
+        new Thread() {
+            @Override
+            public void run() {
+
+                //  THIS IS A VERY BASIC EXAMPLE OF PARSING USER CAN USE ANY LATEST METHORD RETROFIT,OKHTTP,VOLLEY ETC
+                String filterid = "filter[categories]=gedgets";
+                filterid = Data.encodeUrl(filterid);
+
+                String parseUrl = Data.BASE_URL + "?" + "&" +
+                        "oauth_signature_method=HMAC-SHA1" +
+                        "&oauth_consumer_key=" + Data.COSTUMER_KEY + "" +
+                        "&oauth_version=1.0" +
+                        "&oauth_timestamp=" + timestamp + "" +
+                        "&oauth_nonce=" + nonce + "" +
+                        "&oauth_signature=" + finalSignature;
+
+                System.out.println("PARSE URL " + parseUrl);
+
+
+                allProductImp.allproduct(
+                        Data.COSTUMER_KEY,
+                        "HMAC-SHA1",
+                        timestamp,
+                        nonce,
+                        "1.0",
+                        finalSignature);
+                // getJSON(parseUrl);
+
+            }
+        }.start();
+
+
     }
 }

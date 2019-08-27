@@ -14,7 +14,8 @@ public class Data {
     public static final String COSTUMER_SECRET ="cs_16eb8c1619ac5bf07bc365e02c990abbb95bbec8";
     public static final  String METHORD="GET";//change API method eg POST,PUT, DELETE etc (ONLY FOR THIS EXAMPLE FOR LIB LIKE RETROFIT,OKHTTP, The Are Dynamic Way)
     //Product list
-    public static final  String BASE_URL = "http://"+BASE_SITE+"/wp-json/wc/v3/products";
+    public static final  String BASE_URL =
+            "http://"+BASE_SITE+"/wp-json/wc/v3/products";
     public static final  String MEN_URL = "http://"+BASE_SITE+"/wp-json/wc/v3/men";
 
     public static String encodeUrl(String url) {

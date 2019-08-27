@@ -9,6 +9,7 @@ import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.os.StrictMode;
 import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableString;
@@ -25,29 +26,25 @@ import androidx.appcompat.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
-import com.logzero.necommerce.accessoriesselection.AccessoriesMainActivity;
 import com.logzero.necommerce.address.OrderAddressActivity;
+import com.logzero.necommerce.allproductmodel.AllProduct;
+import com.logzero.necommerce.allproductmodel.AllProductImp;
+import com.logzero.necommerce.allproductmodel.AllProductsPresenter;
 import com.logzero.necommerce.cart.AddtoCartActivity;
 import com.logzero.necommerce.contactus.ContactUsActivity;
 import com.logzero.necommerce.kidselection.KidSelectionActivity;
 import com.logzero.necommerce.menselection.MenMainActivity;
 import com.logzero.necommerce.notification.NotificationActivity;
-import com.logzero.necommerce.productdetail.ProductDetailsActivity;
-import com.logzero.necommerce.ui.MediumTextView;
 import com.logzero.necommerce.utility.BaseActivity;
 import com.logzero.necommerce.utility.CustomTypefaceSpan;
 import com.logzero.necommerce.utility.Data;
 import com.logzero.necommerce.wishlist.WishlistActivity;
 import com.logzero.necommerce.womenselection.WomenMainActivity;
-import com.logzero.necommerce.womenselection.fragment.DressFragment;
 import com.woocommerse.OAuth1.services.HMACSha1SignatureService;
 import com.woocommerse.OAuth1.services.TimestampServiceImpl;
 
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.Menu;
 import android.view.Window;
@@ -61,23 +58,28 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class MainActivity extends BaseActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener
+         {
     private static final String[] COUNTRIES = new String[]{"Men's Fashion",
             "Women's Fashion", "Accessories", "Women's Dress", "Men's Wallet"};
     AutoCompleteTextView autoCompleteTextView;
     ImageView accessoriesbanner, womenbanner, menbanner;
+    public AllProductImp allProductImp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -315,7 +317,7 @@ public class MainActivity extends BaseActivity
     @Override
     protected void onResume() {
         super.onResume();
-        productrequest();
+        //getallproductrequest();
     }
 
     @Override
@@ -421,7 +423,7 @@ public class MainActivity extends BaseActivity
             dialog.show();
     }
 
-    public void productrequest() {
+    public void getallproductrequest() {
 
         final String nonce = new TimestampServiceImpl().getNonce();
         final String timestamp = new TimestampServiceImpl().getTimestampInSeconds();
@@ -437,7 +439,7 @@ public class MainActivity extends BaseActivity
         String parameterString = "oauth_consumer_key=" + Data.COSTUMER_KEY +
                 "&oauth_nonce=" + nonce +
                 "&oauth_signature_method=HMAC-SHA1" +
-                "&"+"oauth_timestamp=" + timestamp +
+                "&" + "oauth_timestamp=" + timestamp +
                 "&oauth_version=1.0";
         String secoundEncodedString = "&" + Data.encodeUrl(parameterString);
 
@@ -457,8 +459,8 @@ public class MainActivity extends BaseActivity
 
         Log.d("SignatureAfter ENCODING", signature);
 
-
         final String finalSignature = signature;//BECAUSE I PUT IN SIMPLE THREAD NOT NECESSARY
+
 
         new Thread() {
             @Override
@@ -476,10 +478,16 @@ public class MainActivity extends BaseActivity
                         "&oauth_nonce=" + nonce + "" +
                         "&oauth_signature=" + finalSignature;
 
-                getJSON(parseUrl);
+                System.out.println("PARSE URL " + parseUrl);
+
+
+
+                // getJSON(parseUrl);
 
             }
         }.start();
+
+
     }
 
     public String getJSON(String url) {
@@ -500,6 +508,7 @@ public class MainActivity extends BaseActivity
             Log.d("staus", "" + status);
             switch (status) {
                 case 200:
+                    //getAllProducts(url);
                 case 401:
                     BufferedReader br = new BufferedReader(new InputStreamReader(c.getInputStream()));
                     StringBuilder sb = new StringBuilder();
@@ -508,7 +517,14 @@ public class MainActivity extends BaseActivity
                         sb.append(line + "\n");
                     }
                     br.close();
-                    Log.d("RESonse here ", sb.toString());
+                    //Log.d("RESonse here ", sb.toString());
+                    JSONArray jsonArray = new JSONArray(sb.toString());
+
+                    for (int i = 0; i < jsonArray.length(); ++i) {
+                        JSONObject rec = jsonArray.getJSONObject(i);
+                        String name = rec.getString("name");
+                        Log.d("RESonse here ", name);
+                    }
                     return sb.toString();
             }
 
@@ -516,6 +532,8 @@ public class MainActivity extends BaseActivity
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, null, ex);
+        } catch (JSONException e) {
+            e.printStackTrace();
         } finally {
             if (c != null) {
                 try {
@@ -527,4 +545,6 @@ public class MainActivity extends BaseActivity
         }
         return "failed";
     }
+
+
 }
